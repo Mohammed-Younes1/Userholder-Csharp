@@ -1,0 +1,6 @@
+@UserholderApp_HostAddress = http://localhost:5288
+
+GET {{UserholderApp_HostAddress}}/UserholderApp/
+Accept: application/json
+
+###
