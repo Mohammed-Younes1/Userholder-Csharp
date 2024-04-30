@@ -13,6 +13,7 @@ namespace UserholderApp.Models
         public int CompanyId { get; set; } 
         public Company Company { get; set; } 
         public ICollection<Posts> Posts { get; set; }
+        public Address Address { get; set; }
 
     }
 }
