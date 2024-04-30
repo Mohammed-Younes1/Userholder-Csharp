@@ -9,9 +9,9 @@ namespace UserholderApp.Models
         {
         }
 
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Geo> Geos { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<Geo> Geo { get; set; }
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Users> Users { get; set; }
 
