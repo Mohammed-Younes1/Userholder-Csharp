@@ -5,8 +5,7 @@ namespace UserholderApp.Interfaces
     public interface IUsers
     {   
         ICollection<Users> GetUsers();
-        
-
-        //bool public UserExists();
+        Users GetUserById(int id);
+        bool  UserExists(int id);
     }
 }

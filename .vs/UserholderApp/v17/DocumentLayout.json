@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\interfaces\\iusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\interfaces\\iusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\interfaces\\iposts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\interfaces\\iposts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\userholderapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\userholderapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\services\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\services\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\data\\userholderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\data\\userholderdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\interfaces\\iusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|solutionrelative:userholderapp\\interfaces\\iusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50B3BCBD-F0BA-4A3B-A787-EA506426FEFC}|UserholderApp\\UserholderApp.csproj|c:\\users\\mohammed\\source\\repos\\userholderapp\\userholderapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,32 +38,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 281,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "UserholderApp\\Controllers\\PostController.cs",
+              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Controllers\\PostController.cs",
+              "RelativeToolTip": "UserholderApp\\Controllers\\PostController.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAACAAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T12:10:15.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "UserholderApp\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "UserholderApp\\Controllers\\UserController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAuwCQAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T11:55:13.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PostService.cs",
+              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Services\\PostService.cs",
+              "RelativeDocumentMoniker": "UserholderApp\\Services\\PostService.cs",
+              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Services\\PostService.cs",
+              "RelativeToolTip": "UserholderApp\\Services\\PostService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T12:06:10.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "UserholderApp\\Services\\UserService.cs",
               "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Services\\UserService.cs",
               "RelativeToolTip": "UserholderApp\\Services\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwB0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T09:19:30.495Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IUsers.cs",
-              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Interfaces\\IUsers.cs",
-              "RelativeDocumentMoniker": "UserholderApp\\Interfaces\\IUsers.cs",
-              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Interfaces\\IUsers.cs",
-              "RelativeToolTip": "UserholderApp\\Interfaces\\IUsers.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T09:16:10.279Z",
+              "WhenOpened": "2024-04-30T11:52:34.529Z",
               "EditorCaption": ""
             },
             {
@@ -74,35 +100,22 @@
               "RelativeDocumentMoniker": "UserholderApp\\Interfaces\\IPosts.cs",
               "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Interfaces\\IPosts.cs",
               "RelativeToolTip": "UserholderApp\\Interfaces\\IPosts.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T09:15:52.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserholderApp",
-              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\UserholderApp.csproj",
-              "RelativeDocumentMoniker": "UserholderApp\\UserholderApp.csproj",
-              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\UserholderApp.csproj",
-              "RelativeToolTip": "UserholderApp\\UserholderApp.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-30T09:12:30.7Z",
+              "WhenOpened": "2024-04-30T12:04:49.74Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\appsettings.json",
-              "RelativeDocumentMoniker": "UserholderApp\\appsettings.json",
-              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\appsettings.json",
-              "RelativeToolTip": "UserholderApp\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-30T08:46:14.709Z",
+              "Title": "IUsers.cs",
+              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Interfaces\\IUsers.cs",
+              "RelativeDocumentMoniker": "UserholderApp\\Interfaces\\IUsers.cs",
+              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Interfaces\\IUsers.cs",
+              "RelativeToolTip": "UserholderApp\\Interfaces\\IUsers.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T11:49:52.474Z",
               "EditorCaption": ""
             },
             {
@@ -113,22 +126,9 @@
               "RelativeDocumentMoniker": "UserholderApp\\Program.cs",
               "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Program.cs",
               "RelativeToolTip": "UserholderApp\\Program.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAADwvwoAAAAhAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAwCQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T08:42:40.284Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserholderDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Data\\UserholderDbContext.cs",
-              "RelativeDocumentMoniker": "UserholderApp\\Data\\UserholderDbContext.cs",
-              "ToolTip": "C:\\Users\\Mohammed\\source\\repos\\UserholderApp\\UserholderApp\\Data\\UserholderDbContext.cs",
-              "RelativeToolTip": "UserholderApp\\Data\\UserholderDbContext.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAqwCkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T07:56:43.284Z",
               "EditorCaption": ""
             }
           ]
