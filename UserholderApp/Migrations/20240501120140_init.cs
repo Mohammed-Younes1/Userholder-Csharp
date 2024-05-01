@@ -31,8 +31,8 @@ namespace UserholderApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Lat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Lng = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,43 +49,43 @@ namespace UserholderApp.Migrations
                     Suite = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    geo_id = table.Column<int>(type: "int", nullable: false)
+                    GeoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Address", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Address_Geo_geo_id",
-                        column: x => x.geo_id,
+                        name: "FK_Address_Geo_GeoId",
+                        column: x => x.GeoId,
                         principalTable: "Geo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "posts",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    address_id = table.Column<int>(type: "int", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    company_id = table.Column<int>(type: "int", nullable: true)
+                    CompanyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_posts", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_posts_Address_address_id",
-                        column: x => x.address_id,
+                        name: "FK_Users_Address_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Address",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_posts_Company_company_id",
-                        column: x => x.company_id,
+                        name: "FK_Users_Company_CompanyId",
+                        column: x => x.CompanyId,
                         principalTable: "Company",
                         principalColumn: "Id");
                 });
@@ -98,39 +98,39 @@ namespace UserholderApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    user_id = table.Column<int>(type: "int", nullable: false)
+                    UsersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_posts_user_id",
-                        column: x => x.user_id,
-                        principalTable: "posts",
+                        name: "FK_Posts_Users_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_geo_id",
+                name: "IX_Address_GeoId",
                 table: "Address",
-                column: "geo_id",
+                column: "GeoId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_posts_address_id",
-                table: "posts",
-                column: "address_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_posts_company_id",
-                table: "posts",
-                column: "company_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_user_id",
+                name: "IX_Posts_UsersId",
                 table: "Posts",
-                column: "user_id");
+                column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_AddressId",
+                table: "Users",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_CompanyId",
+                table: "Users",
+                column: "CompanyId");
         }
 
         /// <inheritdoc />
@@ -140,7 +140,7 @@ namespace UserholderApp.Migrations
                 name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "posts");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Address");

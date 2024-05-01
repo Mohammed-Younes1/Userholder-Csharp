@@ -67,5 +67,43 @@ namespace UserholderApp.Controllers
 
         }
 
+        [HttpPut("{userId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateUsers(int userId, [FromBody] UsersDto updateUser)
+        {
+            if (updateUser == null)
+                return BadRequest(ModelState);
+
+            //if (userId != updateUser.Id)
+            //    return BadRequest(ModelState);
+
+            //if (!userId.UserExists(userId))
+            //    return NotFound();
+
+            var findUser = _users.GetUserById(userId);
+            var updatedUser = _users.UpdateUsers(findUser);
+
+            return Ok("Successfully Updated");
+        }
+
+
+        [HttpDelete("{userId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> DeleteUsers(int userId)
+        {
+            if (!_users.UserExists(userId))
+                return NotFound();
+
+            var findUser = _users.GetUserById(userId);
+
+            var deletePost = _users.DeleteUsers(findUser);
+
+            return Ok("Successfully Delete");
+        }
+
     }
 }

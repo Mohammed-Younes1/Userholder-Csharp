@@ -8,8 +8,7 @@ namespace UserholderApp.Models
         public string Title { get; set; }
         public string Body { get; set; }
 
-        [Column("user_id")]
-        public int UsersId { get; set; } // Foreign Key
+        public int UsersId { get; set; } 
         public Users Users { get; set; }
 
     }

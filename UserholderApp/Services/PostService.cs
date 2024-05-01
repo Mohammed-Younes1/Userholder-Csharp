@@ -1,4 +1,6 @@
-﻿using UserholderApp.Interfaces;
+﻿using Microsoft.Extensions.Hosting;
+using UserholderApp.Dto;
+using UserholderApp.Interfaces;
 using UserholderApp.Models;
 
 namespace UserholderApp.Services
@@ -12,16 +14,31 @@ namespace UserholderApp.Services
             _context = context;
         }
 
-        public bool CreatePost(Posts posts)
+        public async Task<bool> CreatePost(PostsDto posts ,int userId)
         {
-            _context.Add(posts);
-            return Save();
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            var newPost = new Posts
+            {
+
+                Title = posts.Title,
+                Body = posts.Body,
+                UsersId = userId
+            };
+
+            await _context.AddAsync(newPost);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public bool DeletePost(Posts posts)
+        public async Task<bool> DeletePost(Posts posts)
         {
             _context.Remove(posts);
-            return Save();
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public Posts GetPostById(int id)
@@ -32,6 +49,16 @@ namespace UserholderApp.Services
         public ICollection<Posts> GetPosts()
         {
            return _context.Posts.OrderBy(p => p.Id).ToList();
+        }
+
+        async Task<ICollection<Posts>> IPosts.GetPostsByUserId(int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return null;
+            }
+            return _context.Posts.Where(u=> u.Users.Id == userId).ToList();
         }
 
         public bool PostsExists(int id)
@@ -45,10 +72,13 @@ namespace UserholderApp.Services
             return saved > 0 ? true : false;
         }
 
-        public bool UpdatePost(Posts posts)
+        public async Task<bool> UpdatePost(Posts posts)
         {
             _context.Update(posts);
-            return Save();
+            await _context.SaveChangesAsync();
+            return true;
+
         }
+
     }
 }

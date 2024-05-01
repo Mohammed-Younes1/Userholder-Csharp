@@ -1,4 +1,5 @@
-﻿using UserholderApp.Models;
+﻿using UserholderApp.Dto;
+using UserholderApp.Models;
 
 namespace UserholderApp.Interfaces
 {
@@ -6,9 +7,11 @@ namespace UserholderApp.Interfaces
     {
         ICollection<Posts> GetPosts();
         Posts GetPostById(int id);
-        bool CreatePost(Posts posts);
-        bool UpdatePost(Posts posts);
-        bool DeletePost(Posts posts);
+        //Task<bool> CreatePost(PostsDto posts);
+        Task<bool> CreatePost(PostsDto postsDto, int userId);
+        Task<bool> UpdatePost(Posts posts);
+        Task<bool> DeletePost(Posts posts);
+        Task<ICollection<Posts>> GetPostsByUserId(int id);
         bool PostsExists(int id);
         bool Save();
 

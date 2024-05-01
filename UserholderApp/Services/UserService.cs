@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.Extensions.Hosting;
+using System.Linq;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -33,7 +34,8 @@ namespace UserholderApp.Services
         public async Task<bool> DeleteUsers(Users users)
         {
             _context.Remove(users);
-            return Save();
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public Users GetUserById(int id)
@@ -49,15 +51,14 @@ namespace UserholderApp.Services
         public async Task<bool>UpdateUsers(Users users)
         {
             _context.Update(users);
-            return Save();
+            await _context.SaveChangesAsync();
+            return true;
         }
         public bool Save()
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
-
-
         public bool UserExists(int id)
         {
             return _context.Users.Any(u => u.Id == id);

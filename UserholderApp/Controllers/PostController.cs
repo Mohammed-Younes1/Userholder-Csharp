@@ -46,45 +46,31 @@ namespace UserholderApp.Controllers
             return Ok(post);
         }
 
+
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreatePosts([FromBody] PostsDto postCreate)
+        public async Task<ActionResult> CreatePost([FromBody] PostsDto postCreate, int userId)
         {
-
             if (postCreate == null)
             {
                 return BadRequest(ModelState);
             }
 
-            //checking if user already exists
-            var post = _posts.GetPosts().Where(u => u.Id == postCreate.Id).FirstOrDefault();
-
-            if (post != null)
+            // Check if the post with the given ID already exists
+            var post = _posts.PostsExists(postCreate.Id);
+            if (post)
             {
                 ModelState.AddModelError("", "Post already exists");
                 return StatusCode(422, ModelState);
             }
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var newPosts = new Posts
-            {
-                //Id = postCreate.Id,
-                Title = postCreate.Title,
-                Body = postCreate.Body,
-               
-            };
-            if (!_posts.CreatePost(newPosts))
-            {
-                ModelState.AddModelError("", "Something went wrong while savin");
-                return StatusCode(500, ModelState);
-            }
-
+            // Call the CreatePost method in the service, passing both the post and user ID
+            var isAdded = await _posts.CreatePost(postCreate, userId);
             return Ok("Successfully created");
-
         }
+
+
 
         [HttpPut("{postId}")]
         [ProducesResponseType(400)]
@@ -101,25 +87,42 @@ namespace UserholderApp.Controllers
             if (!_posts.PostsExists(postId))
                 return NotFound();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
+            var findPost = _posts.GetPostById(postId);
+            var updatedpost =_posts.UpdatePost(findPost);
+
+            return Ok("Successfully Updated");
+        }
 
 
-            var newPosts = new Posts
+        [HttpDelete("{postId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult>DeletePost(int postId)
+        {
+            if(!_posts.PostsExists(postId))
+                return NotFound();
+
+            var findPost=_posts.GetPostById(postId);
+
+            var deletePost = _posts.DeletePost(findPost);
+
+            return Ok("Successfully Delete");
+        }
+
+
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetPostsByUserId(int userId)
+        {
+            var posts = await _posts.GetPostsByUserId(userId);
+
+            if (posts == null)
             {
-                //Id = postCreate.Id,
-                Title = updatePosts.Title,
-                Body = updatePosts.Body,
-
-            };
-
-            if (!_posts.UpdatePost(newPosts))
-            {
-                ModelState.AddModelError("", "Something went wrong updating category");
-                return StatusCode(500, ModelState);
+                return NotFound(); 
             }
 
-            return NoContent();
+            return Ok(posts); // Return the posts associated with the user
         }
     }
 }

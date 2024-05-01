@@ -35,8 +35,7 @@ namespace UserholderApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GeoId")
-                        .HasColumnType("int")
-                        .HasColumnName("geo_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -92,12 +91,10 @@ namespace UserholderApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Lat");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("Lng");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -121,8 +118,7 @@ namespace UserholderApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsersId")
-                        .HasColumnType("int")
-                        .HasColumnName("user_id");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -140,12 +136,10 @@ namespace UserholderApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("AddressId")
-                        .HasColumnType("int")
-                        .HasColumnName("address_id");
+                        .HasColumnType("int");
 
                     b.Property<int?>("CompanyId")
-                        .HasColumnType("int")
-                        .HasColumnName("company_id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -169,7 +163,7 @@ namespace UserholderApp.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("posts");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("UserholderApp.Models.Address", b =>
