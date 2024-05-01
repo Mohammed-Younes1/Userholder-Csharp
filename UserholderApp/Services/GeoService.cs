@@ -11,6 +11,19 @@ namespace UserholderApp.Services
         {
             _context = context;
         }
+
+        public bool CreateGeo(Geo geo)
+        {
+            _context.Add(geo);
+            return Save();
+        }
+
+        public bool DeleteGeo(Geo geo)
+        {
+            _context.Remove(geo);
+            return Save();
+        }
+
         public bool GeoExists(int id)
         {
             return _context.Geo.Any(g => g.Id == id);
@@ -24,6 +37,18 @@ namespace UserholderApp.Services
         public ICollection<Geo> GetGeos()
         {
             return _context.Geo.OrderBy(g=>g.Id).ToList();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateGeo(Geo geo)
+        {
+            _context.Update(geo);
+            return Save();
         }
     }
 }

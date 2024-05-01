@@ -1,4 +1,5 @@
-﻿using UserholderApp.Models;
+﻿using UserholderApp.Dto;
+using UserholderApp.Models;
 
 namespace UserholderApp.Interfaces
 {
@@ -6,6 +7,11 @@ namespace UserholderApp.Interfaces
     {   
         ICollection<Users> GetUsers();
         Users GetUserById(int id);
+        Task<bool> CreateUsers(UsersDto users);
+        Task<bool> UpdateUsers(Users users);
+        Task<bool> DeleteUsers(Users users);
         bool  UserExists(int id);
+        bool Save();
+
     }
 }
