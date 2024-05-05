@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -51,14 +52,14 @@ namespace UserholderApp.Services
            return _context.Posts.OrderBy(p => p.Id).ToList();
         }
 
-        async Task<ICollection<Posts>> IPosts.GetPostsByUserId(int userId)
+        async Task<ICollection<object>> IPosts.GetPostsByUserId(int userId)
         {
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
-            {
-                return null;
-            }
-            return _context.Posts.Where(u=> u.Users.Id == userId).ToList();
+            var posts = await _context.Posts
+        .Where(p => p.UsersId == userId)
+        .Select(p => new { p.Id, p.Title, p.Body })
+        .ToListAsync();
+
+            return posts.Cast<object>().ToList();
         }
 
         public bool PostsExists(int id)
@@ -72,13 +73,22 @@ namespace UserholderApp.Services
             return saved > 0 ? true : false;
         }
 
-        public async Task<bool> UpdatePost(Posts posts)
+        public async Task<bool> UpdatePost(PostsDto posts)
         {
-            _context.Update(posts);
-            await _context.SaveChangesAsync();
-            return true;
+            var existingPost = await _context.Posts.FindAsync(posts.Id);
+            if (existingPost == null)
+            {
+                return false;
+            }
+            existingPost.Title = posts.Title;
+            existingPost.Body = posts.Body;
+            existingPost.UsersId = posts.UsersId; 
 
+            await _context.SaveChangesAsync();
+            return true; 
         }
+       
+
 
     }
 }

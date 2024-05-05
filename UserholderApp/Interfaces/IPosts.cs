@@ -9,9 +9,9 @@ namespace UserholderApp.Interfaces
         Posts GetPostById(int id);
         //Task<bool> CreatePost(PostsDto posts);
         Task<bool> CreatePost(PostsDto postsDto, int userId);
-        Task<bool> UpdatePost(Posts posts);
+        Task<bool> UpdatePost(PostsDto posts);
         Task<bool> DeletePost(Posts posts);
-        Task<ICollection<Posts>> GetPostsByUserId(int id);
+        Task<ICollection<object>> GetPostsByUserId(int id);
         bool PostsExists(int id);
         bool Save();
 

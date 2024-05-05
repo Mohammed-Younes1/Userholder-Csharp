@@ -73,10 +73,7 @@ namespace UserholderApp.Controllers
 
 
         [HttpPut("{postId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
-        public IActionResult UpdatePost(int postId, [FromBody] PostsDto updatePosts)
+        public async Task<IActionResult> UpdatePost(int postId, [FromBody] PostsDto updatePosts)
         {
             if (updatePosts == null)
                 return BadRequest(ModelState);
@@ -87,11 +84,13 @@ namespace UserholderApp.Controllers
             if (!_posts.PostsExists(postId))
                 return NotFound();
 
-            var findPost = _posts.GetPostById(postId);
-            var updatedpost =_posts.UpdatePost(findPost);
+            var isUpdated = await _posts.UpdatePost(updatePosts);
+            if (!isUpdated)
+                return StatusCode(500); // or any appropriate error response
 
-            return Ok("Successfully Updated");
+            return NoContent(); // 204 No Content response
         }
+
 
 
         [HttpDelete("{postId}")]
@@ -111,8 +110,11 @@ namespace UserholderApp.Controllers
         }
 
 
-
-        [HttpGet("{userId}")]
+        //[HttpGet("user/{userId}/posts")]
+        [HttpGet("{userId}/posts")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetPostsByUserId(int userId)
         {
             var posts = await _posts.GetPostsByUserId(userId);

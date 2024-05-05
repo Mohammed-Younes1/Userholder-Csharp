@@ -33,8 +33,14 @@ namespace UserholderApp.Services
 
         public async Task<bool> DeleteUsers(Users users)
         {
-            _context.Remove(users);
+            var userPosts = _context.Posts.Where(p => p.UsersId == users.Id);
+
+
+            _context.Posts.RemoveRange(userPosts); // Remove all posts associated with the user
+            _context.Users.Remove(users); // Remove the user itself
+
             await _context.SaveChangesAsync();
+
             return true;
         }
 

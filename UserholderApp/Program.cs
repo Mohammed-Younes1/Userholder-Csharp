@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
 using UserholderApp.Services;
@@ -7,7 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 builder.Services.AddScoped<IUsers, UserService>();
 builder.Services.AddScoped<IPosts, PostService>();
 builder.Services.AddScoped<IAddress, AddressService>();
