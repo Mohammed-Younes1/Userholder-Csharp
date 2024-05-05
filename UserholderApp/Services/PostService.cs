@@ -87,8 +87,23 @@ namespace UserholderApp.Services
             await _context.SaveChangesAsync();
             return true; 
         }
-       
 
+        public async Task<bool> DeleteOnePostByOwner(int userId, int postId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+            if (post == null)
+            {
+                return false; // Post not found
+            }
 
+            if(post.UsersId != userId) {
+                return false;
+            }
+
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

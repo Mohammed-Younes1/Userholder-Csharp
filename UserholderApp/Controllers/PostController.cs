@@ -126,5 +126,12 @@ namespace UserholderApp.Controllers
 
             return Ok(posts); // Return the posts associated with the user
         }
+
+        [HttpDelete("{userId}/posts/{postId}")]
+        public async Task<IActionResult> DeleteOnePostByOwner(int userId, int postId)
+        {
+            var isDeleted = await _posts.DeleteOnePostByOwner(userId, postId);
+            return Ok("Successfully Delete");
+        }
     }
 }
