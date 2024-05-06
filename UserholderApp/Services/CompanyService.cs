@@ -1,4 +1,5 @@
-﻿using UserholderApp.Interfaces;
+﻿using UserholderApp.Dto;
+using UserholderApp.Interfaces;
 using UserholderApp.Models;
 
 namespace UserholderApp.Services
@@ -17,10 +18,25 @@ namespace UserholderApp.Services
             return _context.Company.Any(c => c.Id == id);
         }
 
-        public bool CreateCompany(Company company)
+
+        public async Task<bool> CreateCompany(CompanyDto company, int userId)
         {
-            _context.Add(company);
-            return Save();
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+
+            var newCompany = new Company
+            {
+                Name= company.Name,
+                CatchPhrase= company.CatchPhrase,
+                Bs= company.Bs,
+                UsersId = userId
+            };
+            await _context.AddAsync(newCompany);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public bool DeleteAddress(Address address)

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
 
@@ -43,6 +45,25 @@ namespace UserholderApp.Controllers
 
             return Ok(company);
 
+        }
+
+        [HttpPost]
+        public async Task<ActionResult>CreateCompany([FromBody] CompanyDto comapnyCreate, int userId)
+        {
+            if (comapnyCreate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var company = _company.CompanyExists(comapnyCreate.Id);
+            if (company)
+            {
+                ModelState.AddModelError("", "Company already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            var isAdded= await _company.CreateCompany(comapnyCreate, userId);
+            return Ok("Successfully created");
         }
     }
 }
