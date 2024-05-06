@@ -42,14 +42,15 @@ namespace UserholderApp.Services
             return true;
         }
 
-        public Posts GetPostById(int id)
+        public async Task<Posts> GetPostById(int id)
         {
-            return _context.Posts.Where(p => p.Id == id).FirstOrDefault();
+            return await _context.Posts.Where(p => p.Id == id).FirstOrDefaultAsync();
+
         }
 
-        public ICollection<Posts> GetPosts()
+        public async Task<ICollection<Posts>> GetPosts()
         {
-           return _context.Posts.OrderBy(p => p.Id).ToList();
+           return await _context.Posts.OrderBy(p => p.Id).ToListAsync();
         }
 
         async Task<ICollection<object>> IPosts.GetPostsByUserId(int userId)
@@ -67,7 +68,7 @@ namespace UserholderApp.Services
             return _context.Posts.Any(p => p.Id == id);
         }
 
-        public bool Save()
+        public async Task <bool> Save()
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;

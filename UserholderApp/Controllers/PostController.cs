@@ -19,26 +19,25 @@ namespace UserholderApp.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Posts>))]
-        public IActionResult GetPosts()
+        public async Task<IActionResult> GetPosts()
         {
-            var posts = _posts.GetPosts();
+            var posts = await _posts.GetPosts();
 
             if (!ModelState.IsValid)
                 return BadRequest();
-
+                
             return Ok(posts);
         }
 
         [HttpGet("{postId}")]
-        [ProducesResponseType(200, Type = typeof(Posts))]
-        public IActionResult GetPostById(int postId)
+        public async Task <IActionResult> GetPostById(int postId)
         {
             if (!_posts.PostsExists(postId))
             {
                 return NotFound();
             }
 
-            var post = _posts.GetPostById(postId);
+            var post = await _posts.GetPostById(postId);
 
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -48,8 +47,6 @@ namespace UserholderApp.Controllers
 
 
         [HttpPost]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
         public async Task<ActionResult> CreatePost([FromBody] PostsDto postCreate, int userId)
         {
             if (postCreate == null)
@@ -94,17 +91,14 @@ namespace UserholderApp.Controllers
 
 
         [HttpDelete("{postId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
         public async Task<ActionResult>DeletePost(int postId)
         {
             if(!_posts.PostsExists(postId))
                 return NotFound();
 
-            var findPost=_posts.GetPostById(postId);
+            var findPost= await _posts.GetPostById(postId);
 
-            var deletePost = _posts.DeletePost(findPost);
+            var deletePost = await _posts.DeletePost(findPost);
 
             return Ok("Successfully Delete");
         }
@@ -112,9 +106,7 @@ namespace UserholderApp.Controllers
 
         //[HttpGet("user/{userId}/posts")]
         [HttpGet("{userId}/posts")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
+
         public async Task<IActionResult> GetPostsByUserId(int userId)
         {
             var posts = await _posts.GetPostsByUserId(userId);

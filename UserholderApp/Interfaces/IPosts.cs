@@ -5,8 +5,8 @@ namespace UserholderApp.Interfaces
 {
     public interface IPosts
     {
-        ICollection<Posts> GetPosts();
-        Posts GetPostById(int id);
+        Task<ICollection<Posts>> GetPosts();
+        Task<Posts> GetPostById(int id);
         //Task<bool> CreatePost(PostsDto posts);
         Task<bool> CreatePost(PostsDto postsDto, int userId);
         Task<bool> UpdatePost(PostsDto posts);
@@ -15,7 +15,7 @@ namespace UserholderApp.Interfaces
 
         Task<ICollection<object>> GetPostsByUserId(int id);
         bool PostsExists(int id);
-        bool Save();
+        Task<bool> Save();
 
     }
 }

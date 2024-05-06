@@ -47,23 +47,23 @@ namespace UserholderApp.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<ActionResult>CreateCompany([FromBody] CompanyDto comapnyCreate, int userId)
-        {
-            if (comapnyCreate == null)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpPost]
+        //public async Task<ActionResult>CreateCompany([FromBody] CompanyDto comapnyCreate, int userId)
+        //{
+        //    if (comapnyCreate == null)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var company = _company.CompanyExists(comapnyCreate.Id);
-            if (company)
-            {
-                ModelState.AddModelError("", "Company already exists");
-                return StatusCode(422, ModelState);
-            }
+        //    var company = _company.CompanyExists(comapnyCreate.Id);
+        //    if (company)
+        //    {
+        //        ModelState.AddModelError("", "Company already exists");
+        //        return StatusCode(422, ModelState);
+        //    }
 
-            var isAdded= await _company.CreateCompany(comapnyCreate, userId);
-            return Ok("Successfully created");
-        }
+        //    var isAdded= await _company.CreateCompany(comapnyCreate, userId);
+        //    return Ok("Successfully created");
+        //}
     }
 }

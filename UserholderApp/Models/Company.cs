@@ -7,6 +7,6 @@
         public string CatchPhrase { get; set; }
         public string Bs { get; set; }
         public int UsersId { get; set; }
-        public Users Users { get; set; }
+        //public Users Users { get; set; }
     }
 }
