@@ -8,5 +8,6 @@
         public string Bs { get; set; }
         public int UsersId { get; set; }
         //public Users Users { get; set; }
+        public ICollection<Users> Users { get; set; }
     }
 }

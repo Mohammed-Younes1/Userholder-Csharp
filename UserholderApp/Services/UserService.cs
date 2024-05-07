@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using System.Linq;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
@@ -44,14 +45,14 @@ namespace UserholderApp.Services
             return true;
         }
 
-        public Users GetUserById(int id)
+        public async Task<Users> GetUserById(int id)
         {
-            return _context.Users.Where(u => u.Id == id).FirstOrDefault();
+            return await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
         }
 
-        public ICollection<Users> GetUsers()
+        public async Task<ICollection<Users>> GetUsers()
         {
-            return _context.Users.OrderBy(u => u.Id).ToList();
+            return await _context.Users.OrderBy(u => u.Id).ToListAsync();
         }
 
         public async Task<bool>UpdateUsers(Users users)

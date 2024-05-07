@@ -18,9 +18,9 @@ namespace UserholderApp.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Users>))]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            var users= _users.GetUsers();
+            var users= await _users.GetUsers();
 
             if(!ModelState.IsValid)
                 return BadRequest();
@@ -30,12 +30,12 @@ namespace UserholderApp.Controllers
 
         [HttpGet("{userId}")]
         [ProducesResponseType(200, Type = typeof(Users))]
-        public IActionResult GetUserById(int userId)
+        public async Task<IActionResult> GetUserById(int userId)
         {
             if (!_users.UserExists(userId))
                 return NotFound();
 
-            var user = _users.GetUserById(userId);
+            var user = await _users.GetUserById(userId);
 
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -55,9 +55,10 @@ namespace UserholderApp.Controllers
                 return BadRequest(ModelState);
             }
             //checking if user already exists
-            var user=_users.GetUsers().Where(u => u.Email == userCreate.Email).FirstOrDefault();
+            var users = await _users.GetUsers();
+            var user = users.FirstOrDefault(u => u.Email == userCreate.Email);
 
-            if(user !=null)
+            if (user !=null)
             {
                 ModelState.AddModelError("", "User already exists");
                 return StatusCode(422, ModelState);
@@ -71,7 +72,7 @@ namespace UserholderApp.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateUsers(int userId, [FromBody] UsersDto updateUser)
+        public async Task<IActionResult> UpdateUsers(int userId, [FromBody] UsersDto updateUser)
         {
             if (updateUser == null)
                 return BadRequest(ModelState);
@@ -82,8 +83,8 @@ namespace UserholderApp.Controllers
             //if (!userId.UserExists(userId))
             //    return NotFound();
 
-            var findUser = _users.GetUserById(userId);
-            var updatedUser = _users.UpdateUsers(findUser);
+            var findUser = await _users.GetUserById(userId);
+            var updatedUser = await _users.UpdateUsers(findUser);
 
             return Ok("Successfully Updated");
         }
@@ -98,9 +99,9 @@ namespace UserholderApp.Controllers
             if (!_users.UserExists(userId))
                 return NotFound();
 
-            var findUser = _users.GetUserById(userId);
+            var findUser = await _users.GetUserById(userId);
 
-            var deletePost = _users.DeleteUsers(findUser);
+            var deletePost = await _users.DeleteUsers(findUser);
 
             return Ok("Successfully Delete");
         }
