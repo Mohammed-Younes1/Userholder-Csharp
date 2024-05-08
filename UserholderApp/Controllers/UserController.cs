@@ -17,7 +17,6 @@ namespace UserholderApp.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Users>))]
         public async Task<IActionResult> GetUsers()
         {
             var users= await _users.GetUsers();
@@ -49,24 +48,55 @@ namespace UserholderApp.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult> CreateUsers([FromBody] UsersDto userCreate ) 
         {
-           
+           //string passwordhash=BCrypt.Net.BCrypt.HashPassword(userCreate.Password);
+
             if(userCreate == null)
             {
                 return BadRequest(ModelState);
             }
             //checking if user already exists
-            var users = await _users.GetUsers();
-            var user = users.FirstOrDefault(u => u.Email == userCreate.Email);
+            //var users = await _users.GetUsers();
+            //var user = users.FirstOrDefault(u => u.Email == userCreate.Email);
 
-            if (user !=null)
-            {
-                ModelState.AddModelError("", "User already exists");
-                return StatusCode(422, ModelState);
-            }
+            //if (user != null)
+            //{
+            //    ModelState.AddModelError("", "User already exists");
+            //    return StatusCode(422, ModelState);
+            //}
             var isAdded = await _users.CreateUsers(userCreate);
             return Ok("Successfully created");
 
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> LoginUsers([FromBody] userLoginDto loginUser)
+        {
+
+            if (loginUser == null)
+            {
+                return BadRequest(ModelState);
+            }
+            //checking if user already exists
+            var users = await _users.GetUsers();
+            var user = users.FirstOrDefault(u => u.Email == loginUser.Email);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "User Not found ");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(loginUser.Password, user.Password))
+            {
+                // Password doesn't match
+                return BadRequest(" wrong password");
+            }
+            var login = await _users.LoginUsers(loginUser);
+            return Ok("Successfully Logged in");
+
+        }
+
+
 
         [HttpPut("{userId}")]
         [ProducesResponseType(400)]

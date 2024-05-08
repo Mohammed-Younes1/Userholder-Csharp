@@ -19,25 +19,25 @@ namespace UserholderApp.Services
         }
 
 
-        //public async Task<bool> CreateCompany(CompanyDto company, int userId)
-        //{
-        //    var user = await _context.Users.FindAsync(userId);
-        //    if (user == null)
-        //    {
-        //        return false;
-        //    }
+        public async Task<bool> CreateCompany(CompanyDto company, int userId)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
 
-        //    var newCompany = new Company
-        //    {
-        //        Name= company.Name,
-        //        CatchPhrase= company.CatchPhrase,
-        //        Bs= company.Bs,
-        //        UsersId = userId
-        //    };
-        //    await _context.AddAsync(newCompany);
-        //    await _context.SaveChangesAsync();
-        //    return true;
-        //}
+            var newCompany = new Company
+            {
+                Name = company.Name,
+                CatchPhrase = company.CatchPhrase,
+                Bs = company.Bs,
+                //UsersId = userId
+            };
+            await _context.AddAsync(newCompany);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
         public bool DeleteAddress(Address address)
         {

@@ -5,9 +5,10 @@ namespace UserholderApp.Interfaces
 {
     public interface IUsers
     {   
-        Task <ICollection<Users>> GetUsers();
+        Task <ICollection<UsersDto>> GetUsers();
         Task<Users> GetUserById(int id);
         Task<bool> CreateUsers(UsersDto users);
+        Task<bool> LoginUsers(userLoginDto users);
         Task<bool> UpdateUsers(Users users);
         Task<bool> DeleteUsers(Users users);
         bool  UserExists(int id);

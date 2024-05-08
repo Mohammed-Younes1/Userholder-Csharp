@@ -17,6 +17,14 @@ namespace UserholderApp.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+       //     modelBuilder.Entity<Company>()
+       //.HasOne(c => c.Users)
+       //.WithOne(u => u.Company)
+       //.HasForeignKey<Users>(u => u.CompanyId); // Assuming there's a foreign key property CompanyId in User entity
+
+          
+
+       //     base.OnModelCreating(modelBuilder);
             //    modelBuilder.Entity<Users>()
             //        .HasMany(u => u.Posts)
             //        .WithOne(p => p.Users)
