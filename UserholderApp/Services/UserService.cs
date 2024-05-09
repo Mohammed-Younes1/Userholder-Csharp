@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using System.Linq;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -10,11 +12,14 @@ namespace UserholderApp.Services
 {
     public class UserService : IUsers
     {
+        
         private readonly UserholderDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public UserService(UserholderDbContext context)
+        public UserService(UserholderDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<bool> CreateUsers(UsersDto users)
@@ -95,19 +100,54 @@ namespace UserholderApp.Services
             return _context.Users.Any(u => u.Id == id);
         }
 
-        public async Task<bool> LoginUsers(userLoginDto users)
+
+        // returns true when i call for the token
+        //public async Task<bool> LoginUsers(userLoginDto users)
+        //{
+        //    var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == users.Email);
+        //    if (user == null)
+        //    {
+
+        //        return false;
+        //    }
+
+        //    return true;
+        //} 
+
+        public async Task<string> LoginUsers(userLoginDto users)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == users.Email);
             if (user == null)
             {
                 // User with the provided email does not exist
-                return false;
+                return null;
             }
-            //if (!BCrypt.Net.BCrypt.Verify(users.Password, user.Password))
-            //{
-            //    return false;
-            //}
-            return true;
+
+            string token = CreateToken(users);
+
+            return token;
+        }
+
+        public string CreateToken(userLoginDto users)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, users.Email),
+            };
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value.PadRight(32)));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256 );
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds
+                ); 
+            
+            var Jwt= new JwtSecurityTokenHandler().WriteToken(token);
+            return Jwt;
         }
     }
 }

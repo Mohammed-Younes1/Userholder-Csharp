@@ -77,8 +77,8 @@ namespace UserholderApp.Controllers
                 return BadRequest(ModelState);
             }
             //checking if user already exists
-            var users = await _users.GetUsers();
-            var user = users.FirstOrDefault(u => u.Email == loginUser.Email);
+            var gettingUsers = await _users.GetUsers();
+            var user = gettingUsers.FirstOrDefault(u => u.Email == loginUser.Email);
 
             if (user == null)
             {
@@ -91,10 +91,13 @@ namespace UserholderApp.Controllers
                 // Password doesn't match
                 return BadRequest(" wrong password");
             }
-            var login = await _users.LoginUsers(loginUser);
-            return Ok("Successfully Logged in");
+            var token = await _users.LoginUsers(loginUser);
+
+
+            return Ok(new { message = "Successfully Logged in", token });
 
         }
+
 
 
 
