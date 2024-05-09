@@ -35,10 +35,10 @@ namespace UserholderApp.Services
                 Website = users.Website
             };
 
-            if(users.Email != null)
-            {
-                return false;
-            }
+            //if(users.Email != null)
+            //{
+            //    return false;
+            //}
             await _context.AddAsync(newUser);
             await _context.SaveChangesAsync();
 
@@ -109,7 +109,7 @@ namespace UserholderApp.Services
         //    {
 
         //        return false;
-        //    }
+        //    }CreateUsers
 
         //    return true;
         //} 
@@ -128,26 +128,28 @@ namespace UserholderApp.Services
             return token;
         }
 
-        public string CreateToken(userLoginDto users)
+        public string CreateToken(userLoginDto user)
         {
-            List<Claim> claims = new List<Claim>
+            var tokenKey = _configuration.GetSection("Jwt:Key").Value;
+
+            var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, users.Email),
+                new Claim(ClaimTypes.Name, user.Email),
             };
 
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value.PadRight(32)));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256 );
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
                 claims: claims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
-                ); 
-            
-            var Jwt= new JwtSecurityTokenHandler().WriteToken(token);
-            return Jwt;
+            );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            return jwt;
         }
+
     }
 }

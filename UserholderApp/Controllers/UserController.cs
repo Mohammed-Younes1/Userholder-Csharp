@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -27,7 +28,7 @@ namespace UserholderApp.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("{userId}") ,Authorize]
         [ProducesResponseType(200, Type = typeof(Users))]
         public async Task<IActionResult> GetUserById(int userId)
         {
@@ -44,8 +45,6 @@ namespace UserholderApp.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(400)]
         public async Task<ActionResult> CreateUsers([FromBody] UsersDto userCreate ) 
         {
            //string passwordhash=BCrypt.Net.BCrypt.HashPassword(userCreate.Password);
@@ -55,15 +54,15 @@ namespace UserholderApp.Controllers
                 return BadRequest(ModelState);
             }
             //checking if user already exists
-            //var users = await _users.GetUsers();
-            //var user = users.FirstOrDefault(u => u.Email == userCreate.Email);
+            var users = await _users.GetUsers();
+            var user = users.FirstOrDefault(u => u.Email == userCreate.Email);
 
-            //if (user != null)
-            //{
-            //    ModelState.AddModelError("", "User already exists");
-            //    return StatusCode(422, ModelState);
-            //}
-            var isAdded = await _users.CreateUsers(userCreate);
+            if (user != null)
+            {
+                ModelState.AddModelError("", "User already exists");
+                return StatusCode(422, ModelState);
+            }
+            await _users.CreateUsers(userCreate);
             return Ok("Successfully created");
 
         }
@@ -99,12 +98,7 @@ namespace UserholderApp.Controllers
         }
 
 
-
-
-        [HttpPut("{userId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
+        [HttpPut("{userId}"),Authorize]
         public async Task<IActionResult> UpdateUsers(int userId, [FromBody] UsersDto updateUser)
         {
             if (updateUser == null)
@@ -123,10 +117,7 @@ namespace UserholderApp.Controllers
         }
 
 
-        [HttpDelete("{userId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
+        [HttpDelete("{userId}"), Authorize]
         public async Task<ActionResult> DeleteUsers(int userId)
         {
             if (!_users.UserExists(userId))

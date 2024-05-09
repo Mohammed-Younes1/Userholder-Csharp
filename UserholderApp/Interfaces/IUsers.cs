@@ -12,7 +12,7 @@ namespace UserholderApp.Interfaces
         Task<string> LoginUsers(userLoginDto users);
         Task<bool> UpdateUsers(Users users);
         Task<bool> DeleteUsers(Users users);
-        public string CreateToken(userLoginDto users);
+        //public string CreateToken(userLoginDto users);
         bool  UserExists(int id);
         bool Save();
 
