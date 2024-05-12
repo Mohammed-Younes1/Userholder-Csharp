@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -45,6 +46,7 @@ namespace UserholderApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> CreateUsers([FromBody] UsersDto userCreate ) 
         {
            //string passwordhash=BCrypt.Net.BCrypt.HashPassword(userCreate.Password);
@@ -68,6 +70,7 @@ namespace UserholderApp.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<ActionResult> LoginUsers([FromBody] userLoginDto loginUser)
         {
 
@@ -78,6 +81,8 @@ namespace UserholderApp.Controllers
             //checking if user already exists
             var gettingUsers = await _users.GetUsers();
             var user = gettingUsers.FirstOrDefault(u => u.Email == loginUser.Email);
+            //var user = gettingUsers.FirstOrDefault(u => u.Id == loginUser.Id);
+
 
             if (user == null)
             {
@@ -98,17 +103,15 @@ namespace UserholderApp.Controllers
         }
 
 
-        [HttpPut("{userId}"),Authorize]
+        [HttpPut("{userId}"), Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> UpdateUsers(int userId, [FromBody] UsersDto updateUser)
         {
-            if (updateUser == null)
-                return BadRequest(ModelState);
-
-            //if (userId != updateUser.Id)
-            //    return BadRequest(ModelState);
-
-            //if (!userId.UserExists(userId))
-            //    return NotFound();
+            var tokenUserId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            if (tokenUserId == null || userId != int.Parse(tokenUserId))
+            {
+                // Unauthorized to update user with different ID
+                return Unauthorized();
+            }
 
             var findUser = await _users.GetUserById(userId);
             var updatedUser = await _users.UpdateUsers(findUser);

@@ -116,7 +116,7 @@ namespace UserholderApp.Services
 
         public async Task<string> LoginUsers(userLoginDto users)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == users.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == users.Id);
             if (user == null)
             {
                 // User with the provided email does not exist
@@ -157,7 +157,12 @@ namespace UserholderApp.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Email)
+                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim("UserId", user.Id.ToString()),
+                    //new Claim(ClaimTypes.Role,"Admin"),
+                    new Claim(ClaimTypes.Role,"User"),
+                    //new Claim("UserId", user.Id.ToString())
+
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
