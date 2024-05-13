@@ -73,7 +73,6 @@ namespace UserholderApp.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> LoginUsers([FromBody] userLoginDto loginUser)
         {
-
             if (loginUser == null)
             {
                 return BadRequest(ModelState);
@@ -83,14 +82,15 @@ namespace UserholderApp.Controllers
             var user = gettingUsers.FirstOrDefault(u => u.Email == loginUser.Email);
             //var user = gettingUsers.FirstOrDefault(u => u.Id == loginUser.Id);
 
-
             if (user == null)
             {
                 ModelState.AddModelError("", "User Not found ");
                 return StatusCode(422, ModelState);
             }
 
-            if (!BCrypt.Net.BCrypt.Verify(loginUser.Password, user.Password))
+
+
+            if (loginUser.Password != user.Password)
             {
                 // Password doesn't match
                 return BadRequest(" wrong password");
@@ -114,7 +114,27 @@ namespace UserholderApp.Controllers
             }
 
             var findUser = await _users.GetUserById(userId);
-            var updatedUser = await _users.UpdateUsers(findUser);
+
+            if (findUser == null)
+            {
+                return NotFound();
+            }
+            string passwordhash = BCrypt.Net.BCrypt.HashPassword(findUser.Password);
+            // Update user properties with the values from updateUser
+            findUser.Name = updateUser.Name;
+            findUser.Email = updateUser.Email;
+            passwordhash = updateUser.Password;
+            findUser.Phone = updateUser.Phone;
+            findUser.Website = updateUser.Website;
+
+            // Call UpdateUsers method to save changes in the database
+            var updated = await _users.UpdateUsers(findUser);
+
+            if (!updated)
+            {
+                // If update operation failed
+                return StatusCode(500, "Failed to update user");
+            }
 
             return Ok("Successfully Updated");
         }

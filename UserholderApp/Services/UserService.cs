@@ -116,19 +116,26 @@ namespace UserholderApp.Services
 
         public async Task<string> LoginUsers(userLoginDto users)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == users.Id);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == users.Email);
+            //var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == users.Id);
+
             if (user == null)
             {
                 // User with the provided email does not exist
                 return null;
             }
-
-            string token = CreateToken(users);
+            var cleanUser = new UsersDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Password = user.Password,
+            };
+            string token = CreateToken(cleanUser);
 
             return token;
         }
-
-        public string CreateToken(userLoginDto user)
+        //adding id to userloginDto
+        public string CreateToken(UsersDto user)
         {
             //var tokenKey = _configuration.GetSection("Jwt:Key").Value;
 
@@ -174,3 +181,4 @@ namespace UserholderApp.Services
 
     }
 }
+    
