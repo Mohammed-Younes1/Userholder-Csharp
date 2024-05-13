@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserholderApp.Dto;
 using UserholderApp.Interfaces;
 using UserholderApp.Models;
@@ -47,8 +48,10 @@ namespace UserholderApp.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> CreatePost([FromBody] PostsDto postCreate, int userId)
+        [Authorize]
+        public async Task<ActionResult> CreatePost([FromBody] PostsDto postCreate, [FromQuery] int userId)
         {
+
             if (postCreate == null)
             {
                 return BadRequest(ModelState);

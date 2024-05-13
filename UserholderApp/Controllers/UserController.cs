@@ -106,13 +106,13 @@ namespace UserholderApp.Controllers
         [HttpPut("{userId}"), Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> UpdateUsers(int userId, [FromBody] UsersDto updateUser)
         {
-            var tokenUserId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
-            if (tokenUserId == null || userId != int.Parse(tokenUserId))
-            {
-                // Unauthorized to update user with different ID
-                return Unauthorized();
-            }
-
+            //var tokenUserId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            //if (tokenUserId == null || userId != int.Parse(tokenUserId))
+            //{
+            //    // Unauthorized to update user with different ID
+            //    return Unauthorized();
+            //}
+ 
             var findUser = await _users.GetUserById(userId);
 
             if (findUser == null)
@@ -140,8 +140,9 @@ namespace UserholderApp.Controllers
         }
 
 
-        [HttpDelete("{userId}"), Authorize]
-        public async Task<ActionResult> DeleteUsers(int userId)
+        [HttpDelete]
+        [Authorize]
+        public async Task<ActionResult> DeleteUsers([FromQuery]int userId)
         {
             if (!_users.UserExists(userId))
                 return NotFound();

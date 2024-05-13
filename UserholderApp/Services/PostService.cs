@@ -17,6 +17,7 @@ namespace UserholderApp.Services
 
         public async Task<bool> CreatePost(PostsDto posts ,int userId)
         {
+
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
